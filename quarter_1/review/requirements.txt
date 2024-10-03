@@ -1,0 +1,3 @@
+certifi==2024.8.30
+pycurl==7.45.3
+python-dotenv==1.0.1
