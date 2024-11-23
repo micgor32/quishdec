@@ -1,0 +1,19 @@
+#Sat Nov 23 16:38:22 CET 2024
+/home/jovyan/zxing_mod/javase/src/main/java/com/google/zxing/client/j2se/MatrixToImageWriter.java=1706661435000
+configuration*?=815C79DBEE6FBEDC22DC8492AD7FC8BE6E21EA56
+/home/jovyan/zxing_mod/javase/src/main/java/com/google/zxing/client/j2se/BufferedImageLuminanceSource.java=1706661435000
+/home/jovyan/zxing_mod/javase/src/main/java/com/google/zxing/client/j2se/CommandLineRunner.java=1706661435000
+/home/jovyan/zxing_mod/javase/src/main/java/com/google/zxing/client/j2se/HtmlAssetTranslator.java=1706661435000
+/home/jovyan/zxing_mod/javase/src/main/java/com/google/zxing/client/j2se/DecoderConfig.java=1706661435000
+/home/jovyan/zxing_mod/javase/src/test/java/com/google/zxing/client/j2se/DecodeWorkerTestCase.java=1706661435000
+/home/jovyan/zxing_mod/javase/src/main/java/com/google/zxing/client/j2se/DecodeWorker.java=1706661435000
+/home/jovyan/zxing_mod/javase/src/main/java/com/google/zxing/client/j2se/GUIRunner.java=1706661435000
+/home/jovyan/zxing_mod/javase/src/main/java/com/google/zxing/client/j2se/MatrixToImageConfig.java=1706661435000
+/home/jovyan/zxing_mod/javase/src/test/java/com/google/zxing/client/j2se/CommandLineEncoderTestCase.java=1706661435000
+/home/jovyan/zxing_mod/javase/src/main/java/com/google/zxing/client/j2se/ImageReader.java=1706661435000
+/home/jovyan/zxing_mod/javase/src/test/java/com/google/zxing/client/j2se/CommandLineRunnerTestCase.java=1706661435000
+/home/jovyan/zxing_mod/javase/src/main/java/com/google/zxing/client/j2se/CommandLineEncoder.java=1706661435000
+/home/jovyan/zxing_mod/javase/src/main/java/com/google/zxing/client/j2se/StringsResourceTranslator.java=1706661435000
+/home/jovyan/zxing_mod/javase/src/test/java/com/google/zxing/client/j2se/ImageReaderTestCase.java=1706661435000
+/home/jovyan/zxing_mod/javase/src/main/java/com/google/zxing/client/j2se/EncoderConfig.java=1706661435000
+/home/jovyan/zxing_mod/javase/src/test/java/com/google/zxing/client/j2se/MatrixToImageWriterTestCase.java=1706661435000

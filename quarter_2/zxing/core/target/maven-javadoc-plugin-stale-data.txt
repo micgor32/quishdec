@@ -1,0 +1,84 @@
+@options
+@packages
+-encoding
+'UTF-8'
+-protected
+-quiet
+-source
+'1.8'
+-sourcepath
+'/home/jovyan/zxing_mod/core/src/main/java:/home/jovyan/zxing_mod/core/target/generated-sources/annotations'
+-html5
+-author
+-bottom
+'Copyright &#169; 2007&#x2013;2024. All rights reserved.'
+-charset
+'UTF-8'
+-d
+'/home/jovyan/zxing_mod/core/target/apidocs'
+-docencoding
+'UTF-8'
+-Xdoclint:all
+-doctitle
+'ZXing Core 3.5.3 API'
+-linkoffline
+'https://docs.oracle.com/javase/8/docs/api' '/home/jovyan/zxing_mod/core/target/javadoc-bundle-options'
+-notimestamp
+-use
+-version
+-windowtitle
+'ZXing Core 3.5.3 API'
+com.google.zxing
+com.google.zxing.aztec
+com.google.zxing.aztec.decoder
+com.google.zxing.aztec.detector
+com.google.zxing.aztec.encoder
+com.google.zxing.client.result
+com.google.zxing.common
+com.google.zxing.common.detector
+com.google.zxing.common.reedsolomon
+com.google.zxing.datamatrix
+com.google.zxing.datamatrix.decoder
+com.google.zxing.datamatrix.detector
+com.google.zxing.datamatrix.encoder
+com.google.zxing.maxicode
+com.google.zxing.maxicode.decoder
+com.google.zxing.multi
+com.google.zxing.multi.qrcode
+com.google.zxing.multi.qrcode.detector
+com.google.zxing.oned
+com.google.zxing.oned.rss
+com.google.zxing.oned.rss.expanded
+com.google.zxing.oned.rss.expanded.decoders
+com.google.zxing.pdf417
+com.google.zxing.pdf417.decoder
+com.google.zxing.pdf417.decoder.ec
+com.google.zxing.pdf417.detector
+com.google.zxing.pdf417.encoder
+com.google.zxing.qrcode
+com.google.zxing.qrcode.decoder
+com.google.zxing.qrcode.detector
+com.google.zxing.qrcode.encoder
+/home/jovyan/zxing_mod/core/src/main/java = 1706661435000
+/home/jovyan/zxing_mod/core/target/generated-sources/annotations = 1732376270977
+/home/jovyan/zxing_mod/core/target/apidocs/element-list = 1732376296008
+/home/jovyan/zxing_mod/core/target/apidocs/constant-values.html = 1732376296234
+/home/jovyan/zxing_mod/core/target/apidocs/serialized-form.html = 1732376296260
+/home/jovyan/zxing_mod/core/target/apidocs/overview-tree.html = 1732376297127
+/home/jovyan/zxing_mod/core/target/apidocs/package-search-index.js = 1732376297193
+/home/jovyan/zxing_mod/core/target/apidocs/package-search-index.zip = 1732376297205
+/home/jovyan/zxing_mod/core/target/apidocs/type-search-index.js = 1732376297208
+/home/jovyan/zxing_mod/core/target/apidocs/type-search-index.zip = 1732376297212
+/home/jovyan/zxing_mod/core/target/apidocs/member-search-index.js = 1732376297216
+/home/jovyan/zxing_mod/core/target/apidocs/member-search-index.zip = 1732376297220
+/home/jovyan/zxing_mod/core/target/apidocs/index-all.html = 1732376297229
+/home/jovyan/zxing_mod/core/target/apidocs/allclasses-index.html = 1732376297238
+/home/jovyan/zxing_mod/core/target/apidocs/allpackages-index.html = 1732376297242
+/home/jovyan/zxing_mod/core/target/apidocs/deprecated-list.html = 1732376297250
+/home/jovyan/zxing_mod/core/target/apidocs/allclasses.html = 1732376297255
+/home/jovyan/zxing_mod/core/target/apidocs/index.html = 1732376297260
+/home/jovyan/zxing_mod/core/target/apidocs/overview-summary.html = 1732376297275
+/home/jovyan/zxing_mod/core/target/apidocs/help-doc.html = 1732376297279
+/home/jovyan/zxing_mod/core/target/apidocs/stylesheet.css = 1732376297282
+/home/jovyan/zxing_mod/core/target/apidocs/script.js = 1732376297285
+/home/jovyan/zxing_mod/core/target/apidocs/search.js = 1732376297288

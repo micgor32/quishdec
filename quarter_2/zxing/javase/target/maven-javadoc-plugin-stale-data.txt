@@ -1,0 +1,59 @@
+@options
+@packages
+-classpath
+'/home/jovyan/zxing_mod/core/target/core-3.5.3.jar:/home/jovyan/.m2/repository/com/beust/jcommander/1.82/jcommander-1.82.jar'
+-encoding
+'UTF-8'
+-protected
+-quiet
+-source
+'1.8'
+-sourcepath
+'/home/jovyan/zxing_mod/javase/src/main/java:/home/jovyan/zxing_mod/javase/target/generated-sources/annotations'
+-html5
+-author
+-bottom
+'Copyright &#169; 2007&#x2013;2024. All rights reserved.'
+-charset
+'UTF-8'
+-d
+'/home/jovyan/zxing_mod/javase/target/apidocs'
+-docencoding
+'UTF-8'
+-Xdoclint:all
+-doctitle
+'ZXing Java SE extensions 3.5.3 API'
+-linkoffline
+'https://docs.oracle.com/javase/8/docs/api' '/home/jovyan/zxing_mod/javase/target/javadoc-bundle-options'
+-linkoffline
+'https://github.com/zxing/zxing/core/apidocs' '/home/jovyan/zxing_mod/core/target/apidocs'
+-notimestamp
+-use
+-version
+-windowtitle
+'ZXing Java SE extensions 3.5.3 API'
+com.google.zxing.client.j2se
+/home/jovyan/zxing_mod/core/target/core-3.5.3.jar = 1732376293328
+/home/jovyan/.m2/repository/com/beust/jcommander/1.82/jcommander-1.82.jar = 1641880697000
+/home/jovyan/zxing_mod/javase/src/main/java = 1706661435000
+/home/jovyan/zxing_mod/javase/target/generated-sources/annotations = 1732376300476
+/home/jovyan/zxing_mod/javase/target/apidocs/element-list = 1732376301859
+/home/jovyan/zxing_mod/javase/target/apidocs/constant-values.html = 1732376301878
+/home/jovyan/zxing_mod/javase/target/apidocs/serialized-form.html = 1732376301884
+/home/jovyan/zxing_mod/javase/target/apidocs/overview-tree.html = 1732376301931
+/home/jovyan/zxing_mod/javase/target/apidocs/package-search-index.js = 1732376301943
+/home/jovyan/zxing_mod/javase/target/apidocs/package-search-index.zip = 1732376301947
+/home/jovyan/zxing_mod/javase/target/apidocs/type-search-index.js = 1732376301949
+/home/jovyan/zxing_mod/javase/target/apidocs/type-search-index.zip = 1732376301952
+/home/jovyan/zxing_mod/javase/target/apidocs/member-search-index.js = 1732376301954
+/home/jovyan/zxing_mod/javase/target/apidocs/member-search-index.zip = 1732376301957
+/home/jovyan/zxing_mod/javase/target/apidocs/index-all.html = 1732376301960
+/home/jovyan/zxing_mod/javase/target/apidocs/allclasses-index.html = 1732376301966
+/home/jovyan/zxing_mod/javase/target/apidocs/allpackages-index.html = 1732376301969
+/home/jovyan/zxing_mod/javase/target/apidocs/deprecated-list.html = 1732376301974
+/home/jovyan/zxing_mod/javase/target/apidocs/allclasses.html = 1732376301977
+/home/jovyan/zxing_mod/javase/target/apidocs/index.html = 1732376301992
+/home/jovyan/zxing_mod/javase/target/apidocs/help-doc.html = 1732376301996
+/home/jovyan/zxing_mod/javase/target/apidocs/stylesheet.css = 1732376302000
+/home/jovyan/zxing_mod/javase/target/apidocs/script.js = 1732376302003
+/home/jovyan/zxing_mod/javase/target/apidocs/search.js = 1732376302006

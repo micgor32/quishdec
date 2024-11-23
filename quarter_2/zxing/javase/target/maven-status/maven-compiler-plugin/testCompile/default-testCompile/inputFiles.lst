@@ -1,0 +1,5 @@
+/home/jovyan/zxing_mod/javase/src/test/java/com/google/zxing/client/j2se/CommandLineEncoderTestCase.java
+/home/jovyan/zxing_mod/javase/src/test/java/com/google/zxing/client/j2se/CommandLineRunnerTestCase.java
+/home/jovyan/zxing_mod/javase/src/test/java/com/google/zxing/client/j2se/DecodeWorkerTestCase.java
+/home/jovyan/zxing_mod/javase/src/test/java/com/google/zxing/client/j2se/ImageReaderTestCase.java
+/home/jovyan/zxing_mod/javase/src/test/java/com/google/zxing/client/j2se/MatrixToImageWriterTestCase.java

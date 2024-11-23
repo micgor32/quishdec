@@ -1,0 +1,34 @@
+
+*****************************************************
+Summary
+-------
+Generated at: 2024-11-23T16:37:38+01:00
+
+Notes: 3
+Binaries: 0
+Archives: 0
+Standards: 5
+
+Apache Licensed: 5
+Generated Documents: 0
+
+JavaDocs are generated, thus a license header is optional.
+Generated files do not require license headers.
+
+0 Unknown Licenses
+
+*****************************************************
+  Files with Apache License headers will be marked AL
+  Binary files (which do not require any license headers) will be marked B
+  Compressed archives will be marked A
+  Notices, licenses etc. will be marked N
+  AL    src/checkstyle/checkstyle.xml
+  AL    src/clirr/ignored-differences.xml
+  AL    src/findbugs/excludes.xml
+  AL    src/site/site.xml
+  N     AUTHORS
+  N     LICENSE
+  N     NOTICE
+  AL    pom.xml
+ 
+*****************************************************

@@ -1,0 +1,12 @@
+/home/jovyan/zxing_mod/javase/src/main/java/com/google/zxing/client/j2se/BufferedImageLuminanceSource.java
+/home/jovyan/zxing_mod/javase/src/main/java/com/google/zxing/client/j2se/CommandLineEncoder.java
+/home/jovyan/zxing_mod/javase/src/main/java/com/google/zxing/client/j2se/CommandLineRunner.java
+/home/jovyan/zxing_mod/javase/src/main/java/com/google/zxing/client/j2se/DecodeWorker.java
+/home/jovyan/zxing_mod/javase/src/main/java/com/google/zxing/client/j2se/DecoderConfig.java
+/home/jovyan/zxing_mod/javase/src/main/java/com/google/zxing/client/j2se/EncoderConfig.java
+/home/jovyan/zxing_mod/javase/src/main/java/com/google/zxing/client/j2se/GUIRunner.java
+/home/jovyan/zxing_mod/javase/src/main/java/com/google/zxing/client/j2se/HtmlAssetTranslator.java
+/home/jovyan/zxing_mod/javase/src/main/java/com/google/zxing/client/j2se/ImageReader.java
+/home/jovyan/zxing_mod/javase/src/main/java/com/google/zxing/client/j2se/MatrixToImageConfig.java
+/home/jovyan/zxing_mod/javase/src/main/java/com/google/zxing/client/j2se/MatrixToImageWriter.java
+/home/jovyan/zxing_mod/javase/src/main/java/com/google/zxing/client/j2se/StringsResourceTranslator.java

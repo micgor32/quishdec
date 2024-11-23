@@ -1,0 +1,13 @@
+com/google/zxing/client/j2se/EncoderConfig.class
+com/google/zxing/client/j2se/BufferedImageLuminanceSource.class
+com/google/zxing/client/j2se/CommandLineEncoder.class
+com/google/zxing/client/j2se/MatrixToImageWriter.class
+com/google/zxing/client/j2se/MatrixToImageConfig.class
+com/google/zxing/client/j2se/DecodeWorker.class
+com/google/zxing/client/j2se/StringsResourceTranslator.class
+com/google/zxing/client/j2se/DecoderConfig.class
+com/google/zxing/client/j2se/GUIRunner$1.class
+com/google/zxing/client/j2se/HtmlAssetTranslator.class
+com/google/zxing/client/j2se/GUIRunner.class
+com/google/zxing/client/j2se/CommandLineRunner.class
+com/google/zxing/client/j2se/ImageReader.class
