@@ -42,3 +42,91 @@ Generated files do not require license headers.
   AL    /home/jovyan/zxing_mod/javase/src/test/java/com/google/zxing/client/j2se/MatrixToImageWriterTestCase.java
  
 *****************************************************
+
+*****************************************************
+Summary
+-------
+Generated at: 2024-11-26T12:07:39+01:00
+
+Notes: 0
+Binaries: 0
+Archives: 0
+Standards: 18
+
+Apache Licensed: 18
+Generated Documents: 0
+
+JavaDocs are generated, thus a license header is optional.
+Generated files do not require license headers.
+
+0 Unknown Licenses
+
+*****************************************************
+  Files with Apache License headers will be marked AL
+  Binary files (which do not require any license headers) will be marked B
+  Compressed archives will be marked A
+  Notices, licenses etc. will be marked N
+  AL    /home/micgor32/UTwente/ars_q2/ars-quishing-detection/quarter_2/zxing/javase/pom.xml
+  AL    /home/micgor32/UTwente/ars_q2/ars-quishing-detection/quarter_2/zxing/javase/src/test/java/com/google/zxing/client/j2se/CommandLineEncoderTestCase.java
+  AL    /home/micgor32/UTwente/ars_q2/ars-quishing-detection/quarter_2/zxing/javase/src/test/java/com/google/zxing/client/j2se/CommandLineRunnerTestCase.java
+  AL    /home/micgor32/UTwente/ars_q2/ars-quishing-detection/quarter_2/zxing/javase/src/test/java/com/google/zxing/client/j2se/MatrixToImageWriterTestCase.java
+  AL    /home/micgor32/UTwente/ars_q2/ars-quishing-detection/quarter_2/zxing/javase/src/test/java/com/google/zxing/client/j2se/DecodeWorkerTestCase.java
+  AL    /home/micgor32/UTwente/ars_q2/ars-quishing-detection/quarter_2/zxing/javase/src/test/java/com/google/zxing/client/j2se/ImageReaderTestCase.java
+  AL    /home/micgor32/UTwente/ars_q2/ars-quishing-detection/quarter_2/zxing/javase/src/main/java/com/google/zxing/client/j2se/DecoderConfig.java
+  AL    /home/micgor32/UTwente/ars_q2/ars-quishing-detection/quarter_2/zxing/javase/src/main/java/com/google/zxing/client/j2se/StringsResourceTranslator.java
+  AL    /home/micgor32/UTwente/ars_q2/ars-quishing-detection/quarter_2/zxing/javase/src/main/java/com/google/zxing/client/j2se/CommandLineEncoder.java
+  AL    /home/micgor32/UTwente/ars_q2/ars-quishing-detection/quarter_2/zxing/javase/src/main/java/com/google/zxing/client/j2se/MatrixToImageConfig.java
+  AL    /home/micgor32/UTwente/ars_q2/ars-quishing-detection/quarter_2/zxing/javase/src/main/java/com/google/zxing/client/j2se/EncoderConfig.java
+  AL    /home/micgor32/UTwente/ars_q2/ars-quishing-detection/quarter_2/zxing/javase/src/main/java/com/google/zxing/client/j2se/CommandLineRunner.java
+  AL    /home/micgor32/UTwente/ars_q2/ars-quishing-detection/quarter_2/zxing/javase/src/main/java/com/google/zxing/client/j2se/BufferedImageLuminanceSource.java
+  AL    /home/micgor32/UTwente/ars_q2/ars-quishing-detection/quarter_2/zxing/javase/src/main/java/com/google/zxing/client/j2se/MatrixToImageWriter.java
+  AL    /home/micgor32/UTwente/ars_q2/ars-quishing-detection/quarter_2/zxing/javase/src/main/java/com/google/zxing/client/j2se/ImageReader.java
+  AL    /home/micgor32/UTwente/ars_q2/ars-quishing-detection/quarter_2/zxing/javase/src/main/java/com/google/zxing/client/j2se/HtmlAssetTranslator.java
+  AL    /home/micgor32/UTwente/ars_q2/ars-quishing-detection/quarter_2/zxing/javase/src/main/java/com/google/zxing/client/j2se/GUIRunner.java
+  AL    /home/micgor32/UTwente/ars_q2/ars-quishing-detection/quarter_2/zxing/javase/src/main/java/com/google/zxing/client/j2se/DecodeWorker.java
+ 
+*****************************************************
+
+*****************************************************
+Summary
+-------
+Generated at: 2024-11-26T12:08:03+01:00
+
+Notes: 0
+Binaries: 0
+Archives: 0
+Standards: 18
+
+Apache Licensed: 18
+Generated Documents: 0
+
+JavaDocs are generated, thus a license header is optional.
+Generated files do not require license headers.
+
+0 Unknown Licenses
+
+*****************************************************
+  Files with Apache License headers will be marked AL
+  Binary files (which do not require any license headers) will be marked B
+  Compressed archives will be marked A
+  Notices, licenses etc. will be marked N
+  AL    /home/micgor32/UTwente/ars_q2/ars-quishing-detection/quarter_2/zxing/javase/pom.xml
+  AL    /home/micgor32/UTwente/ars_q2/ars-quishing-detection/quarter_2/zxing/javase/src/test/java/com/google/zxing/client/j2se/CommandLineEncoderTestCase.java
+  AL    /home/micgor32/UTwente/ars_q2/ars-quishing-detection/quarter_2/zxing/javase/src/test/java/com/google/zxing/client/j2se/CommandLineRunnerTestCase.java
+  AL    /home/micgor32/UTwente/ars_q2/ars-quishing-detection/quarter_2/zxing/javase/src/test/java/com/google/zxing/client/j2se/MatrixToImageWriterTestCase.java
+  AL    /home/micgor32/UTwente/ars_q2/ars-quishing-detection/quarter_2/zxing/javase/src/test/java/com/google/zxing/client/j2se/DecodeWorkerTestCase.java
+  AL    /home/micgor32/UTwente/ars_q2/ars-quishing-detection/quarter_2/zxing/javase/src/test/java/com/google/zxing/client/j2se/ImageReaderTestCase.java
+  AL    /home/micgor32/UTwente/ars_q2/ars-quishing-detection/quarter_2/zxing/javase/src/main/java/com/google/zxing/client/j2se/DecoderConfig.java
+  AL    /home/micgor32/UTwente/ars_q2/ars-quishing-detection/quarter_2/zxing/javase/src/main/java/com/google/zxing/client/j2se/StringsResourceTranslator.java
+  AL    /home/micgor32/UTwente/ars_q2/ars-quishing-detection/quarter_2/zxing/javase/src/main/java/com/google/zxing/client/j2se/CommandLineEncoder.java
+  AL    /home/micgor32/UTwente/ars_q2/ars-quishing-detection/quarter_2/zxing/javase/src/main/java/com/google/zxing/client/j2se/MatrixToImageConfig.java
+  AL    /home/micgor32/UTwente/ars_q2/ars-quishing-detection/quarter_2/zxing/javase/src/main/java/com/google/zxing/client/j2se/EncoderConfig.java
+  AL    /home/micgor32/UTwente/ars_q2/ars-quishing-detection/quarter_2/zxing/javase/src/main/java/com/google/zxing/client/j2se/CommandLineRunner.java
+  AL    /home/micgor32/UTwente/ars_q2/ars-quishing-detection/quarter_2/zxing/javase/src/main/java/com/google/zxing/client/j2se/BufferedImageLuminanceSource.java
+  AL    /home/micgor32/UTwente/ars_q2/ars-quishing-detection/quarter_2/zxing/javase/src/main/java/com/google/zxing/client/j2se/MatrixToImageWriter.java
+  AL    /home/micgor32/UTwente/ars_q2/ars-quishing-detection/quarter_2/zxing/javase/src/main/java/com/google/zxing/client/j2se/ImageReader.java
+  AL    /home/micgor32/UTwente/ars_q2/ars-quishing-detection/quarter_2/zxing/javase/src/main/java/com/google/zxing/client/j2se/HtmlAssetTranslator.java
+  AL    /home/micgor32/UTwente/ars_q2/ars-quishing-detection/quarter_2/zxing/javase/src/main/java/com/google/zxing/client/j2se/GUIRunner.java
+  AL    /home/micgor32/UTwente/ars_q2/ars-quishing-detection/quarter_2/zxing/javase/src/main/java/com/google/zxing/client/j2se/DecodeWorker.java
+ 
+*****************************************************
