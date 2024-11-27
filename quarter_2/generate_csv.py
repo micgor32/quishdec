@@ -5,7 +5,7 @@ from jpype.types import *
 import sys
 import csv
 
-def main(directory_path, output_path):
+def main(directory_path, output_path, ds_type):
     jpype.startJVM(classpath=['core-3.5.3.jar', 'javase-3.5.3.jar'])
 
     from com.google.zxing import BinaryBitmap, ResultMetadataType
@@ -80,6 +80,7 @@ def main(directory_path, output_path):
                     'Number of empty bytes': totalEmptyBytesData,
                     'Number of EC Codewords': len(ecBytes),
                     'Errors corrected': corrected,
+                    'Modified': ds_type,
             }
             data.append(entry)
 
@@ -104,6 +105,7 @@ def dump_to_csv(csv_data, target):
             'Number of empty bytes',
             'Number of EC Codewords',
             'Errors corrected',
+            'Modified',
         ]
         writer = csv.DictWriter(file, fieldnames=fieldnames)
         writer.writeheader()
@@ -111,8 +113,19 @@ def dump_to_csv(csv_data, target):
         for r in csv_data:
             writer.writerow(r)
 
+
+def usage():
+    print("Usage: python generate_csv.py <source_dir> <output_file> <dataset_type>")
+    print("Options for <dataset_type>:")
+    print("0 - benign")
+    print("1 - malicious")
+ 
+
 if __name__ == '__main__':
-    if len(sys.argv) < 3:
-        print("Usage: python generate_csv.py <source_dir> <output_file>")
+    if len(sys.argv) < 4:
+        usage()
     else:
-        main(sys.argv[1], sys.argv[2])
+        if sys.argv[3] not in ["0", "1"]:
+            usage()
+        else:
+            main(sys.argv[1], sys.argv[2], sys.argv[3])
