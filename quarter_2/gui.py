@@ -7,7 +7,7 @@ from jpype.types import *
 from backend_poc import extract_img, validate
 
 img_path = None
-jpype.startJVM(classpath=['core-3.5.3.jar', 'javase-3.5.3.jar'])
+jpype.startJVM(classpath=['zxing/core/target/core-3.5.3.jar', 'zxing/javase/target/javase-3.5.3.jar'])
 
 def on_close():
     if jpype.isJVMStarted():

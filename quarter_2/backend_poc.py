@@ -95,7 +95,6 @@ def extract_img(img_path):
     except Exception as e:
         print(f"Exception occurred: {e}")
     
-    #jpype.shutdownJVM()
     return df
 
 
@@ -117,7 +116,8 @@ if __name__ == '__main__':
     if len(sys.argv) < 2:
         print("Usage: python backend_poc.py <path_to_image>")
     else:
-        jpype.startJVM(classpath=['core-3.5.3.jar', 'javase-3.5.3.jar'])
+        jpype.startJVM(classpath=['zxing/core/target/core-3.5.3.jar', 'zxing/javase/target/javase-3.5.3.jar'])
         data = extract_img(sys.argv[1])
-        print(data)
+        verdict = validate("model.xz", data)
+        print(verdict) # Just pure verdict for now 
         jpype.shutdownJVM()

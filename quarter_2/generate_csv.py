@@ -6,7 +6,7 @@ import sys
 import csv
 
 def main(directory_path, output_path, ds_type):
-    jpype.startJVM(classpath=['core-3.5.3.jar', 'javase-3.5.3.jar'])
+    jpype.startJVM(classpath=['zxing/core/target/core-3.5.3.jar', 'zxing/javase/target/javase-3.5.3.jar'])
 
     from com.google.zxing import BinaryBitmap, ResultMetadataType
     from com.google.zxing.client.j2se import BufferedImageLuminanceSource
