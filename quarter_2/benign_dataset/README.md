@@ -20,7 +20,7 @@ source .[venv name]/bin/activate
 ### Dependencies
 After creating and activating the virtual environment, you have to install the required packages, running:
 ```bash
-pip install -r dependencies.txt
+pip install -r requirements.txt
 ```
 
 ### Running the script
