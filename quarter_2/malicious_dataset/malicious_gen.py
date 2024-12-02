@@ -4,10 +4,13 @@ import csv
 import random
 
 with open('malicious.csv', mode='r', encoding='utf-8') as f:
-    r = csv.DictReader(f)
+    dialect = csv.Sniffer().sniff(f.read(1024))
+    f.seek(0)
+
+    r = csv.DictReader(f, delimiter=dialect.delimiter)
     for row in r:
-        url = row["AdresDomeny"]
-    
+        url = row.get("AdresDomeny")
+
         ec = random.choice([
             QRCode.Ecc.LOW,
             QRCode.Ecc.MEDIUM,
