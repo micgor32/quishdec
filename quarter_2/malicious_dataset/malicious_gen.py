@@ -1,19 +1,29 @@
 from PIL import Image
 from qrcodegen import QrCode
+import csv
+import random
 
+with open('malicious.csv', mode='r', encoding='utf-8') as f:
+    r = csv.DictReader(f)
+    for row in r:
+        url = row["AdresDomeny"]
+    
+        ec = random.choice([
+            QRCode.Ecc.LOW,
+            QRCode.Ecc.MEDIUM,
+            QRCode.Ecc.QUARTILE,
+            QRCode.Ecc.HIGH,
+        ])
+        qr = QrCode.encode_text(url, ec)
 
-# Sample data to encode
-data = "Hello, World!"
+        # Left out for now, no clue how to specify version with this lib.
+        #v = random.randint(1, 10)
 
-# Error correction level (choose from LOW, MEDIUM, QUARTILE, HIGH)
-ecl = QrCode.Ecc.LOW
+        img = qr_to_image(qr)
+        img_filename = f"generated/malicious_{i+1}.png"
 
-# Generate the QR code
-qr = QrCode.encode_text(data, ecl)
+        img.save(img_filename)
 
-
-# For example:
-# qr = QrCode.encode_text(data, ecl, minversion=1, maxversion=40, mask=-1, boostecl=True)
 
 def qr_to_image(qr: QrCode, scale: int = 10, border: int = 4) -> Image.Image:
     """Converts a QrCode object into a PIL Image."""
@@ -30,9 +40,3 @@ def qr_to_image(qr: QrCode, scale: int = 10, border: int = 4) -> Image.Image:
                         py = (y + border) * scale + dy
                         pixels[px, py] = 0  # Black
     return img
-
-img = qr_to_image(qr)
-
-img.save("qr_code.png")
-
-img.show()
