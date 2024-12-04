@@ -101,10 +101,12 @@ def main(csv_filename: str, output_folder: str):
     - output_folder: The folder where the output PNG files will be saved.
     """
     try:
-        with open(csv_filename, newline='') as csvfile:
-            reader = csv.reader(csvfile)
-            next(reader, None)  # Skip the header if there is one
-            for row in reader:
+        with open(csv_filename, mode='r', encoding='utf-8') as csvfile:
+            dialect = csv.Sniffer().sniff(csvfile.read(1024))
+            csvfile.seek(0)
+
+            r = csv.DictReader(csvfile, delimiter=dialect.delimiter)
+            for row in r:
                 if row:
                     name = row[0]
                     ecl = QrCode.Ecc.MEDIUM
