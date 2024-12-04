@@ -4,6 +4,8 @@ import jpype.imports
 from jpype.types import *
 
 
+jpype.startJVM(classpath=['zxing/core/target/core-3.5.3.jar', 'zxing/javase/target/javase-3.5.3.jar'])
+
 from com.google.zxing import BinaryBitmap
 from com.google.zxing.client.j2se import BufferedImageLuminanceSource
 from com.google.zxing.common import HybridBinarizer
@@ -47,8 +49,13 @@ def main(path):
             ecBytes = codewordBytes[numDataCodewords:]
 
             print(f"\nBlock {i+1}:")
-            print(f"Data Codewords ({len(dataBytes)} bytes):", ' '.join(f"{b & 0xFF:02X}" for b in dataBytes))
+            # Generate the hex representation and store it in a variable
+            hex_data = ' '.join(f"{b & 0xFF:02X}" for b in dataBytes)
+
+            print(f"Data Codewords ({len(dataBytes)} bytes): {hex_data}")
+            
             print(f"Error Correction Codewords ({len(ecBytes)} bytes):", ' '.join(f"{b & 0xFF:02X}" for b in ecBytes))
+         
             
         reader = QRCodeReader()
         result = reader.decode(binaryBitmap)
@@ -62,7 +69,7 @@ def main(path):
         # Shutdown the JVM
         jpype.shutdownJVM()
 
-
+        
 def usage():
     print("Usage: python decode.py <path_to_qr_code_img>")
  
@@ -71,5 +78,5 @@ if __name__ == '__main__':
     if len(sys.argv) < 2:
         usage()
     else:    
-        jpype.startJVM(classpath=['zxing/core/target/core-3.5.3.jar', 'zxing/javase/target/javase-3.5.3.jar'])
+        # jpype.startJVM(classpath=['zxing/core/target/core-3.5.3.jar', 'zxing/javase/target/javase-3.5.3.jar'])
         main(sys.argv[1])
