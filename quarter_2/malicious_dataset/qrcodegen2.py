@@ -882,7 +882,7 @@ class QrSegment:
 
 # ---- Private helper class ----
 
-class BitBuffer(list[int]):
+class _BitBuffer(list[int]):
 	"""An appendable sequence of bits (0s and 1s). Mainly used by QrSegment."""
 	
 	def append_bits(self, val: int, n: int) -> None:
