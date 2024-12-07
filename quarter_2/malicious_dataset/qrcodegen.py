@@ -117,14 +117,7 @@ class QrCode:
 		bb.append_bits(0, -len(bb) % 8)  # Note: Python's modulo on negative numbers behaves better than C family languages
 		assert len(bb) % 8 == 0
 		
-		# Pad with alternating bytes until data capacity is reached
-		# for padbyte in itertools.cycle((0xEC, 0x11)):
-		# 	if len(bb) >= datacapacitybits:
-		# 		break
-		# 	bb.append_bits(padbyte, 8)
-		print(f"datacapacitybits: {datacapacitybits} and {len(bb)} ")
 		while len(bb) < datacapacitybits:
-			print(f"Added padding byte: 00")
 			bb.append_bits(0x00, 8)
 				
 		# Pack bits into bytes in big endian
@@ -133,13 +126,8 @@ class QrCode:
 			datacodewords[i >> 3] |= bit << (7 - (i & 7))
 
 			
-		print("Data codewords:", ' '.join(f"{byte:02X}" for byte in datacodewords))
 		bit_string = ''.join(f'{byte:08b}' for byte in datacodewords)
-		print(bit_string)
 		mode_indicator = bit_string[:4]	
-		print(f"Mode Indicator: {mode_indicator}")
-
-
 
 		# Create the QR Code object
 		return QrCode(version, ecl, datacodewords, mask)

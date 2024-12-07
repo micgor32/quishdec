@@ -25,6 +25,7 @@ from __future__ import annotations
 import collections, itertools, re
 from collections.abc import Sequence
 from typing import Optional, Union
+import random
 
 
 # ---- QR Code symbol class ----
@@ -81,7 +82,6 @@ class QrCode:
 		between modes (such as alphanumeric and byte) to encode text in less space.
 		This is a mid-level API; the high-level API is encode_text() and encode_binary()."""
 		
-		import random
 
 		# Compute the minimum version dynamically based on data size
 		minversion_dynamic = QrCode.MIN_VERSION
