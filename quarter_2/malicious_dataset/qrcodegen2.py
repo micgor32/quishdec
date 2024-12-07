@@ -81,27 +81,40 @@ class QrCode:
 		between modes (such as alphanumeric and byte) to encode text in less space.
 		This is a mid-level API; the high-level API is encode_text() and encode_binary()."""
 		
-		if not (QrCode.MIN_VERSION <= minversion <= maxversion <= QrCode.MAX_VERSION) or not (-1 <= mask <= 7):
-			raise ValueError("Invalid value")
-		
 		import random
 
-		version = random.randint(minversion, maxversion)
-		datacapacitybits: int = QrCode._get_num_data_codewords(version, ecl) * 8  # Number of data bits available
-		datausedbits: Optional[int] = QrSegment.get_total_bits(segs, version)
+		# Compute the minimum version dynamically based on data size
+		minversion_dynamic = QrCode.MIN_VERSION
+		for version in range(QrCode.MIN_VERSION, QrCode.MAX_VERSION + 1):
+			datacapacitybits = QrCode._get_num_data_codewords(version, ecl) * 8
+			datausedbits = QrSegment.get_total_bits(segs, version)
+			if datausedbits is not None and datausedbits <= datacapacitybits:
+				minversion_dynamic = version
+				break
 
-		if (datausedbits is not None) and (datausedbits <= datacapacitybits):
-			# This random version is found to be suitable
+		# Validate the computed minimum version
+		if not (minversion_dynamic <= maxversion <= QrCode.MAX_VERSION):
+			raise ValueError("Invalid range of versions for the given data")
+
+		# Randomly select a version between the computed min version and max version
+		version = random.randint(minversion_dynamic, maxversion)
+
+		# Recalculate the data capacity for the selected version
+		datacapacitybits = QrCode._get_num_data_codewords(version, ecl) * 8
+		datausedbits = QrSegment.get_total_bits(segs, version)
+
+		# Validate that the selected version can fit the data
+		if datausedbits is not None and datausedbits <= datacapacitybits:
+			# The random version is suitable
 			pass
 		else:
-			# The selected version cannot fit the given data, raise an error
-			msg: str = "Segment too long"
+			# Raise an error if the selected version cannot fit the data
+			msg = "Segment too long"
 			if datausedbits is not None:
 				msg = f"Data length = {datausedbits} bits, Max capacity = {datacapacitybits} bits"
 			raise DataTooLongError(msg)
 
 		assert datausedbits is not None
-		
 		# Increase the error correction level while the data still fits in the current version number
 		for newecl in (QrCode.Ecc.MEDIUM, QrCode.Ecc.QUARTILE, QrCode.Ecc.HIGH):  # From low to high
 			if boostecl and (datausedbits <= QrCode._get_num_data_codewords(version, newecl) * 8):
@@ -600,7 +613,7 @@ class QrCode:
 	# ---- Constants and tables ----
 	
 	MIN_VERSION: int =  1  # The minimum version number supported in the QR Code Model 2 standard
-	MAX_VERSION: int = 40  # The maximum version number supported in the QR Code Model 2 standard
+	MAX_VERSION: int = 10  # The maximum version number supported in the QR Code Model 2 standard
 	
 	# For use in _get_penalty_score(), when evaluating which mask is best.
 	_PENALTY_N1: int =  3
