@@ -82,22 +82,36 @@ class QrCode:
 		between modes (such as alphanumeric and byte) to encode text in less space.
 		This is a mid-level API; the high-level API is encode_text() and encode_binary()."""
 		
+		if not (QrCode.MIN_VERSION <= minversion <= maxversion <= QrCode.MAX_VERSION) or not (-1 <= mask <= 7):
+			raise ValueError("Invalid value")
+		
+		# Find the minimal version number to use
+		for version in range(minversion, maxversion + 1):
+			datacapacitybits: int = QrCode._get_num_data_codewords(version, ecl) * 8  # Number of data bits available
+			datausedbits: Optional[int] = QrSegment.get_total_bits(segs, version)
+			if (datausedbits is not None) and (datausedbits <= datacapacitybits):
+				break  # This version number is found to be suitable
+			if version >= maxversion:  # All versions in the range could not fit the given data
+				msg: str = "Segment too long"
+				if datausedbits is not None:
+					msg = f"Data length = {datausedbits} bits, Max capacity = {datacapacitybits} bits"
+				raise DataTooLongError(msg)
+		assert datausedbits is not None
+		# # Compute the minimum version dynamically based on data size
+		# minversion_dynamic = QrCode.MIN_VERSION
+		# for version in range(QrCode.MIN_VERSION, QrCode.MAX_VERSION + 1):
+		# 	datacapacitybits = QrCode._get_num_data_codewords(version, ecl) * 8
+		# 	datausedbits = QrSegment.get_total_bits(segs, version)
+		# 	if datausedbits is not None and datausedbits <= datacapacitybits:
+		# 		minversion_dynamic = version
+		# 		break
 
-		# Compute the minimum version dynamically based on data size
-		minversion_dynamic = QrCode.MIN_VERSION
-		for version in range(QrCode.MIN_VERSION, QrCode.MAX_VERSION + 1):
-			datacapacitybits = QrCode._get_num_data_codewords(version, ecl) * 8
-			datausedbits = QrSegment.get_total_bits(segs, version)
-			if datausedbits is not None and datausedbits <= datacapacitybits:
-				minversion_dynamic = version
-				break
+		# # Validate the computed minimum version
+		# if not (minversion_dynamic <= maxversion <= QrCode.MAX_VERSION):
+		# 	raise ValueError("Invalid range of versions for the given data")
 
-		# Validate the computed minimum version
-		if not (minversion_dynamic <= maxversion <= QrCode.MAX_VERSION):
-			raise ValueError("Invalid range of versions for the given data")
-
-		# Randomly select a version between the computed min version and max version
-		version = random.randint(minversion_dynamic, maxversion)
+		# # Randomly select a version between the computed min version and max version
+		# version = random.randint(minversion_dynamic, maxversion)
 
 		# Recalculate the data capacity for the selected version
 		datacapacitybits = QrCode._get_num_data_codewords(version, ecl) * 8
