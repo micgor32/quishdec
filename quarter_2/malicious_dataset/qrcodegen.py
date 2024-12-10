@@ -70,7 +70,7 @@ class QrCode:
 	# ---- Static factory functions (mid level) ----
 	
 	@staticmethod
-	def encode_segments(segs: Sequence[QrSegment], ecl: QrCode.Ecc, minversion: int = 1, maxversion: int = 40, mask: int = -1, boostecl: bool = True) -> QrCode:
+	def encode_segments(segs: Sequence[QrSegment], ecl: QrCode.Ecc, minversion: int = 1, maxversion: int = 10, mask: int = -1, boostecl: bool = True) -> QrCode:
 		"""Returns a QR Code representing the given segments with the given encoding parameters.
 		The smallest possible QR Code version within the given range is automatically
 		chosen for the output. Iff boostecl is true, then the ECC level of the result
@@ -596,7 +596,7 @@ class QrCode:
 	# ---- Constants and tables ----
 	
 	MIN_VERSION: int =  1  # The minimum version number supported in the QR Code Model 2 standard
-	MAX_VERSION: int = 40  # The maximum version number supported in the QR Code Model 2 standard
+	MAX_VERSION: int = 10  # The maximum version number supported in the QR Code Model 2 standard
 	
 	# For use in _get_penalty_score(), when evaluating which mask is best.
 	_PENALTY_N1: int =  3
