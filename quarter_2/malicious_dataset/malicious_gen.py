@@ -4,41 +4,87 @@ from qrcodegen import QrCode
 from qrcodegen2 import QrCode as QrCode2
 import csv
 import random
+import numpy as np
 import os
 
-def qr_to_image_generic(qr, scale: int = 10, border: int = 4, is_rgb: bool = False) -> Image.Image:
-    """
-    Converts a QrCode object into a PIL Image.
-    Handles both monochrome and RGB images.
-    """
+def qr_to_image_generic(qr, scale=10, border=4, is_rgb=False):
     size = qr.get_size()
-    img_size = (size + border * 2) * scale
-    mode = "RGB" if is_rgb else "1"
-    bg_color = "white" if is_rgb else 1
-    img = Image.new(mode, (img_size, img_size), bg_color)
-    pixels = img.load()
+    full_size = size + 2 * border
 
-    for y in range(size):
-        for x in range(size):
-            if qr.get_module(x, y):
-                for dy in range(scale):
-                    for dx in range(scale):
-                        px = (x + border) * scale + dx
-                        py = (y + border) * scale + dy
-                        if is_rgb:
-                            pixels[px, py] = (0, 0, 0)  # Black
-                        else:
-                            pixels[px, py] = 0  # Black
-    return img
+    img_array = np.ones((full_size * scale, full_size * scale), dtype=np.uint8) * 255  # Default to white (255)
+
+    qr_matrix = np.array([[1 if qr.get_module(x, y) else 0 for x in range(size)] for y in range(size)], dtype=np.uint8)
+    qr_matrix = np.pad(qr_matrix, pad_width=border, mode='constant', constant_values=0)
+
+    scaled_matrix = np.kron(qr_matrix, np.ones((scale, scale), dtype=np.uint8))
+
+    img_array[:scaled_matrix.shape[0], :scaled_matrix.shape[1]][scaled_matrix == 1] = 0  # Set black pixels (0)
+
+    if is_rgb:
+        img_array = np.stack([img_array] * 3, axis=-1)  # Convert grayscale to RGB
+        mode = "RGB"
+    else:
+        mode = "L"
+
+    return Image.fromarray(img_array, mode)
+
+
+def modified_add_ecc_and_interleave(self, data: bytearray) -> bytes:
+    version: int = self._version
+    assert len(data) == QrCode2._get_num_data_codewords(version, self._errcorlvl)
+    numblocks: int = QrCode2._NUM_ERROR_CORRECTION_BLOCKS[self._errcorlvl.ordinal][version]
+    blockecclen: int = QrCode2._ECC_CODEWORDS_PER_BLOCK[self._errcorlvl.ordinal][version]
+    rawcodewords: int = QrCode2._get_num_raw_data_modules(version) // 8
+    numshortblocks: int = numblocks - rawcodewords % numblocks
+    shortblocklen: int = rawcodewords // numblocks
+
+    modified_data = bytearray(data)
+
+    index_to_modify = random.randint(0, len(modified_data) - 1)
+
+    modified_data[index_to_modify] = (modified_data[index_to_modify] + 1) % 256  # Ensure it wraps around within byte limits
+
+    blocks: list[bytes] = []
+    rsdiv: bytes = QrCode2._reed_solomon_compute_divisor(blockecclen)
+    k: int = 0
+
+    for i in range(numblocks):
+        mdat: bytearray = modified_data[k : k + shortblocklen - blockecclen + (0 if i < numshortblocks else 1)]
+        dat: bytearray = data[k : k + shortblocklen - blockecclen + (0 if i < numshortblocks else 1)]
+        k += len(dat)
+        ecc1: bytes = QrCode2._reed_solomon_compute_remainder(mdat, rsdiv)
+        ecc2: bytes = QrCode2._reed_solomon_compute_remainder(dat, rsdiv)
+
+        # Adjust half_length to ensure it covers the full length in case of an odd length
+        half_length = (len(ecc2) + 1) // 2  # This ensures that any remainder is rounded up
+
+        # Combine the first half from ecc1 and the last half from ecc2
+        combined_ecc = ecc1[:half_length] + ecc2[-(len(ecc2) - half_length):]
+
+        # Ensure ecc is the same length as ecc2
+        ecc: bytes = combined_ecc
+        if i < numshortblocks:
+            dat.append(0)
+            mdat.append(0)
+        combined_block = dat + ecc
+        blocks.append(combined_block)
+
+    assert k == len(data)
+
+    # Interleave the blocks
+    result = bytearray()
+    for i in range(len(blocks[0])):
+        for (j, blk) in enumerate(blocks):
+            # Skip the padding byte in short blocks
+            if (i != shortblocklen - blockecclen) or (j >= numshortblocks):
+                result.append(blk[i])
+    assert len(result) >= rawcodewords
+
+    return result
+
 
 def generate_qr_codes(rows, output_folder, num_each_type, method):
-    """
-    Generates QR codes for a given method.
-    - rows: List of rows from the CSV.
-    - output_folder: Folder to save images.
-    - num_each_type: Number of QR codes to generate.
-    - method: Specifies which QR generation method to use.
-    """
+
     for i, row in enumerate(rows):
         url = row.get("AdresDomeny")
         if not url:
@@ -55,7 +101,6 @@ def generate_qr_codes(rows, output_folder, num_each_type, method):
             img = qr_to_image_generic(qr, scale=10, border=4, is_rgb=False)
         elif method == 2:
             ecl = random.choice([
-                QrCode.Ecc.LOW,
                 QrCode.Ecc.MEDIUM,
                 QrCode.Ecc.QUARTILE,
                 QrCode.Ecc.HIGH,
@@ -68,16 +113,9 @@ def generate_qr_codes(rows, output_folder, num_each_type, method):
             os.makedirs(output_folder)
         img_filename = f"{output_folder}/qrcode_{method}_{i + 1}.png"
         img.save(img_filename)
-        print(f"QR Code image saved as {img_filename}")
+    
 
 def main(csv_filename: str, output_folder: str, num_each_type: int = None):
-    """
-    Reads a list of names from a CSV file and generates QR codes using two different methods.
-    Parameters:
-    - csv_filename: The name of the input CSV file.
-    - output_folder: The folder where the output PNG files will be saved.
-    - num_each_type: The number of QR codes to generate for each type.
-    """
     try:
         with open(csv_filename, mode='r', encoding='utf-8') as csvfile:
             dialect = csv.Sniffer().sniff(csvfile.read(1024))
@@ -108,7 +146,7 @@ if __name__ == "__main__":
     csv_filename = 'malicious.csv'
     output_folder = 'generated'
     num_each_type = None
-
+    QrCode2._add_ecc_and_interleave = modified_add_ecc_and_interleave
     if len(sys.argv) > 1:
         try:
             num_each_type = int(sys.argv[1]) // 2
