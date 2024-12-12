@@ -70,7 +70,7 @@ class QrCode:
 	# ---- Static factory functions (mid level) ----
 	
 	@staticmethod
-	def encode_segments(segs: Sequence[QrSegment], ecl: QrCode.Ecc, minversion: int = 1, maxversion: int = 10, mask: int = -1, boostecl: bool = True) -> QrCode:
+	def encode_segments(segs: Sequence[QrSegment], ecl: QrCode.Ecc, minversion: int = 2, maxversion: int = 10, mask: int = -1, boostecl: bool = True) -> QrCode:
 		"""Returns a QR Code representing the given segments with the given encoding parameters.
 		The smallest possible QR Code version within the given range is automatically
 		chosen for the output. Iff boostecl is true, then the ECC level of the result
