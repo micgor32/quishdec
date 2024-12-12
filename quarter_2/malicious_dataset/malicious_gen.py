@@ -1,7 +1,6 @@
 import sys
 from PIL import Image
 from qrcodegen import QrCode
-from qrcodegen2 import QrCode as QrCode2
 import csv
 import random
 import numpy as np
@@ -31,10 +30,10 @@ def qr_to_image_generic(qr, scale=10, border=4, is_rgb=False):
 
 def modified_add_ecc_and_interleave(self, data: bytearray) -> bytes:
     version: int = self._version
-    assert len(data) == QrCode2._get_num_data_codewords(version, self._errcorlvl)
-    numblocks: int = QrCode2._NUM_ERROR_CORRECTION_BLOCKS[self._errcorlvl.ordinal][version]
-    blockecclen: int = QrCode2._ECC_CODEWORDS_PER_BLOCK[self._errcorlvl.ordinal][version]
-    rawcodewords: int = QrCode2._get_num_raw_data_modules(version) // 8
+    assert len(data) == QrCode._get_num_data_codewords(version, self._errcorlvl)
+    numblocks: int = QrCode._NUM_ERROR_CORRECTION_BLOCKS[self._errcorlvl.ordinal][version]
+    blockecclen: int = QrCode._ECC_CODEWORDS_PER_BLOCK[self._errcorlvl.ordinal][version]
+    rawcodewords: int = QrCode._get_num_raw_data_modules(version) // 8
     numshortblocks: int = numblocks - rawcodewords % numblocks
     shortblocklen: int = rawcodewords // numblocks
 
@@ -45,15 +44,15 @@ def modified_add_ecc_and_interleave(self, data: bytearray) -> bytes:
     modified_data[index_to_modify] = (modified_data[index_to_modify] + 1) % 256  # Ensure it wraps around within byte limits
 
     blocks: list[bytes] = []
-    rsdiv: bytes = QrCode2._reed_solomon_compute_divisor(blockecclen)
+    rsdiv: bytes = QrCode._reed_solomon_compute_divisor(blockecclen)
     k: int = 0
 
     for i in range(numblocks):
         mdat: bytearray = modified_data[k : k + shortblocklen - blockecclen + (0 if i < numshortblocks else 1)]
         dat: bytearray = data[k : k + shortblocklen - blockecclen + (0 if i < numshortblocks else 1)]
         k += len(dat)
-        ecc1: bytes = QrCode2._reed_solomon_compute_remainder(mdat, rsdiv)
-        ecc2: bytes = QrCode2._reed_solomon_compute_remainder(dat, rsdiv)
+        ecc1: bytes = QrCode._reed_solomon_compute_remainder(mdat, rsdiv)
+        ecc2: bytes = QrCode._reed_solomon_compute_remainder(dat, rsdiv)
 
         # Adjust half_length to ensure it covers the full length in case of an odd length
         half_length = (len(ecc2) + 1) // 2  # This ensures that any remainder is rounded up
@@ -92,7 +91,6 @@ def generate_qr_codes(rows, output_folder, num_each_type, method):
 
         if method == 1:
             ec = random.choice([
-                QrCode.Ecc.LOW,
                 QrCode.Ecc.MEDIUM,
                 QrCode.Ecc.QUARTILE,
                 QrCode.Ecc.HIGH,
@@ -105,7 +103,7 @@ def generate_qr_codes(rows, output_folder, num_each_type, method):
                 QrCode.Ecc.QUARTILE,
                 QrCode.Ecc.HIGH,
             ])
-            qr = QrCode2.encode_text(url, ecl)
+            qr = QrCode.encode_text(url, ecl)
             img = qr_to_image_generic(qr, scale=10, border=4, is_rgb=True)
 
         # Save image
@@ -146,7 +144,7 @@ if __name__ == "__main__":
     csv_filename = 'malicious.csv'
     output_folder = 'generated'
     num_each_type = None
-    QrCode2._add_ecc_and_interleave = modified_add_ecc_and_interleave
+    QrCode._add_ecc_and_interleave = modified_add_ecc_and_interleave
     if len(sys.argv) > 1:
         try:
             num_each_type = int(sys.argv[1]) // 2
