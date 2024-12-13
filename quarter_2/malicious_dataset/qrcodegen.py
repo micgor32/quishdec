@@ -25,7 +25,8 @@ from __future__ import annotations
 import collections, itertools, re
 from collections.abc import Sequence
 from typing import Optional, Union
-
+import itertools
+import random
 
 # ---- QR Code symbol class ----
 
@@ -117,9 +118,19 @@ class QrCode:
 		bb.append_bits(0, -len(bb) % 8)  # Note: Python's modulo on negative numbers behaves better than C family languages
 		assert len(bb) % 8 == 0
 		
-		while len(bb) < datacapacitybits:
-			bb.append_bits(0x00, 8)
-				
+		# Assuming `bb` is an object with an `append_bits` method
+		if random.random() > 0.5:
+			while len(bb) < datacapacitybits:
+				bb.append_bits(0x00, 8)
+		else:
+			for padbyte in itertools.cycle((0xEC, 0x11)):
+				if len(bb) >= datacapacitybits:
+					break
+				bb.append_bits(padbyte, 8)
+
+		
+
+
 		# Pack bits into bytes in big endian
 		datacodewords = bytearray([0] * (len(bb) // 8))
 		for (i, bit) in enumerate(bb):
