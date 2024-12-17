@@ -105,7 +105,7 @@ def validate(path_to_model, data):
     df['EC Level'] = df['Error Correction Level'].map(
     {'L': 1, 'M': 2, 'Q': 3, 'H': 4}).astype(int)
     tc = df[['Version', 'EC Level', 'Expected number of data codewords',
-            'Actual number of data codewords', 'Errors corrected']]
+              'Actual number of data codewords', 'Errors corrected']]
 
     tc = tc.apply(pd.to_numeric).astype(int)
     verdict = model.predict(tc)
