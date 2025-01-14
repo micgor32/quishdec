@@ -91,7 +91,8 @@ def extract_img(img_path):
 
     except jpype.JException as je:
         print("Java exception occurred:")
-        je.printStackTrace()
+        je.printStackTrace() # not really useful if running under web ui
+        raise RuntimeError(f"Java exception occurred: {je}") from je # this on the other hand, is only useful if using web ui, else it will produce another exception and the whole script will crash. temp solution for now
     except Exception as e:
         print(f"Exception occurred: {e}")
     
