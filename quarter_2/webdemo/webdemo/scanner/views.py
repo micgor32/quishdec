@@ -11,20 +11,37 @@ def index(request):
         if form.is_valid():
             uploaded_image = request.FILES['image']
 
-            # Create a temporary file to provide a file path to extract_img
-            with tempfile.NamedTemporaryFile(suffix='.png', delete=True) as tmp:
-                for chunk in uploaded_image.chunks():
-                    tmp.write(chunk)
-                tmp.flush()
+            try:
+                with tempfile.NamedTemporaryFile(suffix='.png', delete=True) as tmp:
+                    for chunk in uploaded_image.chunks():
+                        tmp.write(chunk)
+                    tmp.flush()
 
-                data = extract_img(tmp.name)
-                result = validate(os.path.join(path, "model.xz"), data)
+                    data = extract_img(tmp.name)
+                    result = validate(os.path.join(path, "model.xz"), data)
 
-            verdict = "Safe" if result == 0 else "Quishing detected !!"
-            return render(request, 'scanner/result.html', {'verdict': verdict})
+                verdict = "Safe" if result == 0 else "Potential Quishing content detected!"
+                return render(request, 'scanner/result.html', {'verdict': verdict})
+
+            except Exception as e:
+                error_message = str(e)
+
+                if "com.google.zxing.NotFoundException" in error_message:
+                    user_error = "The provided image does not contain a QR code."
+                elif "com.google.zxing.ChecksumException" in error_message:
+                    user_error = "The QR code is damaged or not decodable."
+                else:
+                    user_error = "Error processing the image: An unexpected error occurred."
+
+                return render(request, 'scanner/index.html', {
+                    'form': form,
+                    'error': user_error
+                })
         else:
-            return render(request, 'scanner/index.html', {'form': form, 'error': 'Invalid form data'})
+            return render(request, 'scanner/index.html', {
+                'form': form,
+                'error': 'Invalid form data'
+            })
     else:
-        # GET request, show the form
         return render(request, 'scanner/index.html', {'form': ImageUploadForm()})
 
